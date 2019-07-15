@@ -69,7 +69,8 @@
 					}
 					
 					target.innerHTML += additionalContent[count];
-
+					ll.update();
+					
 					addContentButton.disabled =
 						++count >= additionalContent.length;
 					num.value = count+1;
@@ -81,7 +82,6 @@
 
 				addContentButton.addEventListener("click", () => {
 					for (i = 0; i < 8; i++) loadContent();
-					ll.update();
 					// addContentButton.classList.toggle("hidden");
 				});
 
