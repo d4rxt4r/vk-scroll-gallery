@@ -11,9 +11,7 @@ var openFile = function (event) {
         output_urls = text;
         additionalContent = output_urls.split(",");
         console.log(additionalContent);
-        additionalContent = [...new Set(additionalContent)];
-        console.log(additionalContent);
-        additionalContent.map((e, i) => {
+        additionalContent = [...new Set(additionalContent)].map((e, i) => {
             return (
                 '<li><a target="_blank" href="' +
                 e +
@@ -84,23 +82,10 @@ var openFile = function (event) {
     addContentButton.addEventListener("click", () => {
         for (i = 0; i < 8; i++) loadContent();
         addContentButton.classList.toggle("hidden");
-        // var inview = new Waypoint.Inview({
-        //     element: document.getElementById('spacer'),
-        //     enter: function(direction) {
-        //       console.log('Enter triggered with direction ' + direction);
-        //       for (i = 0; i < 4; i++) loadContent();
-        //     }
-        // });
         createNewWp(waypointNum);
     });
 
     window.onscroll = function (ev) {
         document.querySelectorAll('.loaded').forEach(e => { e.classList.remove('lazy') });
-        // if (
-        //     window.innerHeight + window.scrollY >=
-        //     document.body.offsetHeight - 50 //0
-        // ) {
-        //     for (i = 0; i < 4; i++) loadContent();
-        // }
     };
 })();
