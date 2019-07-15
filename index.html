@@ -69,7 +69,6 @@
 					}
 
 					target.innerHTML += additionalContent[count];
-					// ll.update();
 
 					addContentButton.disabled =
 						++count >= additionalContent.length;
@@ -84,19 +83,19 @@
 					for (i = 0; i < 8; i++) loadContent();
 					ll.update();
 					document.querySelectorAll('.lazy').forEach(e=>{e.classList.remove('lazy')});
-					// addContentButton.classList.toggle("hidden");
+					addContentButton.classList.toggle("hidden");
 				});
 
-				// window.onscroll = function(ev) {
-				// 	if (
-				// 		window.innerHeight + window.scrollY >=
-				// 		document.body.offsetHeight - 0 //50
-				// 	) {
-				// 		for (i = 0; i < 4; i++) loadContent();
-				// 		window.scroll(0, window.scrollY);
-				// 	}
-				// 	console.log(window.scrollY);
-				// };
+				window.onscroll = function(ev) {
+					if (
+						window.innerHeight + window.scrollY >=
+						document.body.offsetHeight - 50
+					) {
+						for (i = 0; i < 4; i++) loadContent();
+						window.scroll(0, window.scrollY);
+					}
+					console.log(window.scrollY);
+				};
 			})();
 		</script>
 	</body>
