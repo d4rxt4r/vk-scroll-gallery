@@ -86,4 +86,7 @@ img:not([src]) {
     img {
         width: 46vw;
     }
+    a {
+        min-height: 212px;
+    }
 }
