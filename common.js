@@ -10,7 +10,9 @@ var openFile = function (event) {
         var text = reader.result;
         output_urls = text;
         additionalContent = output_urls.split(",");
+        console.log(additionalContent);
         additionalContent = [...new Set(additionalContent)];
+        console.log(additionalContent);
         additionalContent.map((e, i) => {
             return (
                 '<li><a target="_blank" href="' +
@@ -20,6 +22,7 @@ var openFile = function (event) {
                 '"><div class="num">' + ++i + '</div></a></li>'
             );
         });
+        console.log(additionalContent);
         console.log('Total urls = ' + additionalContent.length);
         addContentButton.classList.toggle("hidden");
     };
