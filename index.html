@@ -70,7 +70,7 @@
 					
 					target.innerHTML += additionalContent[count];
 					ll.update();
-					
+
 					addContentButton.disabled =
 						++count >= additionalContent.length;
 					num.value = count+1;
@@ -87,13 +87,12 @@
 
 				window.onscroll = function(ev) {
 					document.querySelectorAll('.loaded').forEach(e=>{e.classList.remove('lazy')});
-					// if (
-					// 	window.innerHeight + window.scrollY >=
-					// 	document.body.offsetHeight - 50 //0
-					// ) {
-					// 	for (i = 0; i < 4; i++) loadContent();
-					// 	ll.update();
-					// }
+					if (
+						window.innerHeight + window.scrollY >=
+						document.body.offsetHeight - 50 //0
+					) {
+						for (i = 0; i < 4; i++) loadContent();
+					}
 				};
 			})();
 		</script>
