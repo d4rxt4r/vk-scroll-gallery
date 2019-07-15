@@ -87,6 +87,9 @@ img:not([src]) {
         width: 46vw;
     }
     a {
-        min-height: 220px;
+        min-height: 212px;
+    }
+    img {
+        max-height: 212px;
     }
 }
