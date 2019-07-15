@@ -1,0 +1,1 @@
+t = $$('.attacment a[href*=jpg]').toString();

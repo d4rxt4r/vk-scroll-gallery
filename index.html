@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head lang="en">
+		<meta charset="UTF-8" />
+		<title>Scroll Gallery</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="style.css">
+	</head>
+
+	<body>
+		<input type="file" accept="text/plain" onchange="openFile(event)" />
+		<div class="ftw">
+			<input
+				type="number"
+				name="counter"
+				id="fastTravelNum"
+				value="1"
+			/><button type="button" id="fastTravelButton">go</button>
+		</div>
+		<button id="addContent" class="hidden">
+			Load content
+		</button>
+		<div id="results" class="results"><ul></ul></div>
+		<script src="lazyload.min.js"></script>
+		<script>
+			var output_urls, additionalContent, addContentButton, gallery;
+
+			addContentButton = document.getElementById("addContent");
+
+			var openFile = function(event) {
+				var input = event.target;
+
+				var reader = new FileReader();
+				reader.onload = function() {
+					var text = reader.result;
+					output_urls = text;
+					additionalContent = output_urls.split(",").map((e, i) => {
+						return (
+							'<li><a target="_blank" href="' +
+							e +
+							'"><img class="lazy" data-src="' +
+							e +
+							'"></a><div class="num">' + //src="img-placeholder.jpg"
+							++i +
+							"</div></li>"
+						);
+					});
+					addContentButton.classList.toggle("hidden");
+				};
+				reader.readAsText(input.files[0]);
+			};
+
+			(function() {
+				var count = 0,
+					target,
+					num;
+
+				var ll = new LazyLoad({
+					container: document.querySelector('.results'),
+					elements_selector: "img.lazy"
+				});
+
+				var target = document.querySelector("#results ul");
+				var num = document.querySelector("#fastTravelNum");
+
+				function loadContent() {
+					if (count === additionalContent.length) {
+						return;
+					}
+
+					target.innerHTML += additionalContent[count];
+					// ll.update();
+
+					addContentButton.disabled =
+						++count >= additionalContent.length;
+					num.value = count+1;
+				}
+
+				fastTravelButton.addEventListener("click", () => {
+					count = num.value - 1;
+				});
+
+				addContentButton.addEventListener("click", () => {
+					for (i = 0; i < 8; i++) loadContent();
+					ll.update();
+					document.querySelectorAll('.lazy').forEach(e=>{e.classList.remove('lazy')});
+					// addContentButton.classList.toggle("hidden");
+				});
+
+				// window.onscroll = function(ev) {
+				// 	if (
+				// 		window.innerHeight + window.scrollY >=
+				// 		document.body.offsetHeight - 0 //50
+				// 	) {
+				// 		for (i = 0; i < 4; i++) loadContent();
+				// 		window.scroll(0, window.scrollY);
+				// 	}
+				// 	console.log(window.scrollY);
+				// };
+			})();
+		</script>
+	</body>
+</html>
