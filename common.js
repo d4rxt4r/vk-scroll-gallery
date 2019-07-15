@@ -9,7 +9,9 @@ var openFile = function (event) {
     reader.onload = function () {
         var text = reader.result;
         output_urls = text;
-        additionalContent = output_urls.split(",").map((e, i) => {
+        additionalContent = output_urls.split(",");
+        additionalContent = [...new Set(additionalContent)];
+        additionalContent.map((e, i) => {
             return (
                 '<li><a target="_blank" href="' +
                 e +
