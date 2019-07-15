@@ -20,6 +20,7 @@ var openFile = function (event) {
                 '"><div class="num">' + ++i + '</div></a></li>'
             );
         });
+        console.log('Total urls = ' + additionalContent.length);
         addContentButton.classList.toggle("hidden");
     };
     reader.readAsText(input.files[0]);
