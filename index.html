@@ -11,16 +11,16 @@
 <body>
 	<input type="file" accept="text/plain" onchange="openFile(event)" />
 	<div class="ftw">
-		<input type="number" name="counter" id="fastTravelNum" value="1" /><button type="button"
-			id="fastTravelButton">go</button>
+		<span id="totalImg">ttl = 0</span>
+		<input type="number" name="counter" id="fastTravelNum" value="1" />
+		<button type="button" id="fastTravelButton">go</button>
 	</div>
 	<button id="addContent" class="hidden">
 		Load content
 	</button>
 
 	<div id="results" class="results">
-		<ul>
-		</ul>
+		<ul></ul>
 	</div>
 	<!-- <div class='spacer' id="waypoint-1">
 		Loading more...

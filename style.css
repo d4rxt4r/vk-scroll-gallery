@@ -75,6 +75,13 @@ img:not([src]) {
     bottom: 4px;
     right: 4px;
     z-index: 10;
+    display: flex;
+}
+#totalImg {
+    color: black;
+    background-color: white;
+    padding: 1px;
+    border: 1px solid grey;
 }
 .spacer {
     padding-top: 2vw;
