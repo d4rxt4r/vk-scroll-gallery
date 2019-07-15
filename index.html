@@ -69,7 +69,6 @@
 					}
 					
 					target.innerHTML += additionalContent[count];
-					ll.update();
 
 					addContentButton.disabled =
 						++count >= additionalContent.length;
@@ -82,19 +81,19 @@
 
 				addContentButton.addEventListener("click", () => {
 					for (i = 0; i < 8; i++) loadContent();
-					// ll.update();
-					addContentButton.classList.toggle("hidden");
+					ll.update();
+					// addContentButton.classList.toggle("hidden");
 				});
 
 				window.onscroll = function(ev) {
 					document.querySelectorAll('.loaded').forEach(e=>{e.classList.remove('lazy')});
-					if (
-						window.innerHeight + window.scrollY >=
-						document.body.offsetHeight - 50 //0
-					) {
-						for (i = 0; i < 4; i++) loadContent();
-						
-					}
+					// if (
+					// 	window.innerHeight + window.scrollY >=
+					// 	document.body.offsetHeight - 50 //0
+					// ) {
+					// 	for (i = 0; i < 4; i++) loadContent();
+					// 	ll.update();
+					// }
 				};
 			})();
 		</script>
