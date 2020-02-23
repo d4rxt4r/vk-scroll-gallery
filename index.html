@@ -9,9 +9,13 @@
 </head>
 
 <body>
-	<input type="file" accept="text/plain" onchange="openFile(event)" />
+	<div class="buttons-wrap">
+		<input type="file" id="openTxt" accept="text/plain" onchange="openTxtFile(event)" />
+		<input type="file" id="openHtml" accept=".html" onchange="openHtmlFile(event)" />
+		<a download="generatedTxt.txt" id="downloadBtn">Загрузить</a>
+	</div>
 	<div class="ftw">
-		<span id="totalImg">ttl = 0</span>
+		<span id="totalImg">total = 0</span>
 		<input type="number" name="counter" id="fastTravelNum" value="1" />
 		<button type="button" id="fastTravelButton">go</button>
 	</div>

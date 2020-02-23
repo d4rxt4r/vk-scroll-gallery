@@ -2,7 +2,7 @@ var output_urls, additionalContent, addContentButton, gallery;
 
 addContentButton = document.getElementById("addContent");
 
-var openFile = function (event) {
+var openTxtFile = function (event) {
     var input = event.target;
 
     var reader = new FileReader();
@@ -21,8 +21,34 @@ var openFile = function (event) {
         });
         console.log('Total urls = ' + additionalContent.length);
         var ttl = document.getElementById('totalImg');
-        ttl.innerText = 'ttl = ' + additionalContent.length;
+        ttl.innerText = 'total = ' + additionalContent.length;
         addContentButton.classList.toggle("hidden");
+    };
+    reader.readAsText(input.files[0]);
+};
+
+var openHtmlFile = function (event) {
+    var input = event.target;
+    var reader = new FileReader();
+    reader.onload = function () {
+        var link = document.getElementById('downloadBtn');
+        var html = reader.result;
+        var dom = document.createElement('html');
+        var links = [];
+        dom.innerHTML = html;
+        linksNodes = dom.querySelectorAll('.attacment a[href*=jpg]');
+        dom.remove();
+        linksNodes.forEach((e, i) => {
+            links[i] = e.attributes.href.value;
+        });
+        var textFile = null;
+        var data = new Blob([links.toString()], { type: 'text/plain' });
+        if (textFile !== null) {
+            window.URL.revokeObjectURL(textFile);
+        }
+        textFile = window.URL.createObjectURL(data);
+        link.href = textFile;
+        link.style.display = 'inline-block';
     };
     reader.readAsText(input.files[0]);
 };
@@ -63,7 +89,7 @@ var openFile = function (event) {
 
         var wp = new Waypoint.Inview({
             element: newWp,
-            enter: function(direction) {
+            enter: function (direction) {
                 console.log(n + '-th waypoint triggered with d:' + direction);
                 if (direction === 'down') {
                     for (i = 0; i < 8; i++) loadContent();
@@ -80,12 +106,13 @@ var openFile = function (event) {
     });
 
     addContentButton.addEventListener("click", () => {
+        target.innerHTML = null;
         for (i = 0; i < 8; i++) loadContent();
         addContentButton.classList.toggle("hidden");
         createNewWp(waypointNum);
     });
 
-    window.onscroll = function (ev) {
-        document.querySelectorAll('.loaded').forEach(e => { e.classList.remove('lazy') });
-    };
+    // window.onscroll = function (ev) {
+    //     document.querySelectorAll('.loaded').forEach(e => { e.classList.remove('lazy') });
+    // };
 })();
